@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>海上楼阁 · Livy</title>
+  <meta name="description" content="Livy 的画展：一座漂在海上的小楼，四层楼，四个展厅，要坐船进去。A gallery pavilion on the sea — four floors, four halls, and you arrive by boat." />
+  <meta property="og:title" content="海上楼阁 · Livy" />
+  <meta property="og:description" content="Livy 的画展：一座漂在海上的小楼，要坐船进去。" />
+  <meta name="theme-color" content="#0b1328" />
+  <link rel="stylesheet" href="assets/vendor/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script type="importmap">
+    { "imports": { "three": "./assets/vendor/three/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-label="A pavilion on the sea"></canvas>
+
+  <!-- data-nosnippet: keep button labels out of search snippets; the description above is used instead. -->
+  <div data-nosnippet>
+    <section id="intro" class="intro">
+      <div class="intro-inner">
+        <p class="kicker" id="kicker"></p>
+        <h1 class="title"><span id="title"></span><i class="seal">Livy</i></h1>
+        <p class="tagline" id="tagline"></p>
+        <button id="btn-board" class="ticket">
+          <span class="ticket-main"><b data-i18n="board">登船</b><small data-i18n="ticket"></small></span>
+          <span class="ticket-stub">No.<br />0001</span>
+        </button>
+        <button id="btn-direct" class="link" data-i18n="direct"></button>
+      </div>
+    </section>
+
+    <p id="caption" class="caption" aria-live="polite"></p>
+    <button id="btn-skip" class="pill skip" data-i18n="skip" hidden></button>
+
+    <header id="hall-card" class="hall-card" hidden>
+      <p class="kicker" id="hall-kicker"></p>
+      <h2 id="hall-theme"></h2>
+      <p id="hall-intro"></p>
+    </header>
+
+    <nav id="floors" class="floors" aria-label="floors" hidden></nav>
+
+    <nav class="top" aria-label="controls">
+      <button id="btn-out" class="pill" data-i18n="outside" hidden></button>
+      <button id="btn-ride" class="pill" data-i18n="ride" hidden></button>
+      <a id="btn-chris" class="pill" target="_blank" rel="noopener"><span class="full" data-i18n="chris"></span><span class="short">Chris</span> ↗</a>
+      <button id="btn-sound" class="pill icon" data-i18n-title="sound">♪</button>
+      <button id="btn-lang" class="pill" data-i18n="lang"></button>
+    </nav>
+
+    <aside id="work" class="work" hidden>
+      <p class="kicker" id="work-kicker"></p>
+      <h3 id="work-title"></h3>
+      <p class="meta" id="work-meta"></p>
+      <p id="work-note"></p>
+      <div class="work-keys">
+        <button id="work-prev" class="pill" data-i18n="prev"></button>
+        <span id="work-count"></span>
+        <button id="work-next" class="pill" data-i18n="next"></button>
+      </div>
+      <button id="work-close" class="close" data-i18n-title="close">×</button>
+    </aside>
+
+    <div id="tip" class="tip" hidden></div>
+    <p id="hint" class="hint" hidden></p>
+  </div>
+  <div id="fade" class="fade"></div>
+
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

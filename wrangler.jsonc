@@ -1,0 +1,8 @@
+// Cloudflare deploy: the whole folder is a static site (files listed in .assetsignore stay private).
+// Add Livy's domain under "routes" once it is bought, like lizhuojin.com in Chris's repo.
+{
+  "name": "lvhome",
+  "compatibility_date": "2026-11-02",
+  "observability": { "enabled": true },
+  "assets": { "directory": "." }
+}
