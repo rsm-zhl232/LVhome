@@ -91,3 +91,39 @@ export function setOn(next) {
   try { localStorage.setItem(KEY, on ? 'on' : 'off'); } catch {}
   if (master) master.gain.setTargetAtTime(on ? 1 : 0, ctx.currentTime, 0.2);
 }
+
+// A soft footstep on wooden boards.
+export function step() {
+  if (!ctx || !on) return;
+  const src = ctx.createBufferSource();
+  src.buffer = noise;
+  const lp = ctx.createBiquadFilter();
+  lp.type = 'lowpass';
+  lp.frequency.value = 420 + Math.random() * 180;
+  const g = ctx.createGain();
+  const now = ctx.currentTime;
+  g.gain.setValueAtTime(0, now);
+  g.gain.linearRampToValueAtTime(0.35, now + 0.004);
+  g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+  src.connect(lp).connect(g).connect(master);
+  src.start(now, Math.random() * 3, 0.1);
+}
+
+// A few bell notes going up, for the butterfly and the stairs lighting up.
+export function chime(notes = [880, 1175, 1568]) {
+  if (!ctx || !on) return;
+  const now = ctx.currentTime;
+  notes.forEach((f, i) => {
+    const o = ctx.createOscillator();
+    o.type = 'sine';
+    o.frequency.value = f;
+    const g = ctx.createGain();
+    const t0 = now + i * 0.12;
+    g.gain.setValueAtTime(0, t0);
+    g.gain.linearRampToValueAtTime(0.08, t0 + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.2);
+    o.connect(g).connect(master);
+    o.start(t0);
+    o.stop(t0 + 1.3);
+  });
+}
